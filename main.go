@@ -2,6 +2,7 @@ package main
 
 import (
 	"fmt"
+	"log"
 	"os"
 	"os/user"
 	"strings"
@@ -10,36 +11,35 @@ import (
 	color "github.com/dschier-wtd/cutefetch/packages"
 )
 
-func getUser() (cuser string) {
+func getUser() string {
 	currentUser, err := user.Current()
 	if err != nil {
-		fmt.Print("Error")
+		log.Print("Error")
+		return ""
 	}
-	cuser = currentUser.Username
-	return
+	return currentUser.Username
 }
 
-func getHostname() (chost string) {
+func getHostname() string {
 	hostname, err := os.Hostname()
 	if err != nil {
-		fmt.Print("Error")
+		log.Println("Error:", err)
 	}
-	chost = hostname
-	return
+	return hostname
 }
 
-func getTime() (ctime string) {
+func getTime() string {
 	currentTime := time.Now()
 	formatedTime := currentTime.Format("02.01.2006 - 15:04:05")
-	ctime = formatedTime
-	return
+	return formatedTime
 }
 
-func getOS() (cdist string) {
+func getOS() string {
 	content, err := os.ReadFile("/etc/os-release")
+
 	if err != nil {
-		fmt.Println("Error:", err)
-		return
+		log.Println("Error:", err)
+		return "Unknown"
 	}
 
 	lines := strings.Split(string(content), "\n")
@@ -49,24 +49,22 @@ func getOS() (cdist string) {
 			if len(parts) == 2 {
 				distribution := strings.Trim(parts[1], `"`)
 
-				cdist = distribution
-				return
+				return distribution
 			}
 		}
 	}
 
-	cdist = "Unknown"
-	return
+	return "Unknown"
 }
 
 func main() {
 
 	fmt.Println()
-	fmt.Println(" (\\ /) \t\t" + color.Red + "User:\t" + color.Reset +
+	fmt.Println("(\\ /) \t\t" + color.Red + "User:\t" + color.Reset +
 		getUser() + "@" + getHostname())
-	fmt.Println(" ( · ·) \t" + color.Green + "Time:\t" + color.Reset +
+	fmt.Println("( · ·) \t\t" + color.Green + "Time:\t" + color.Reset +
 		getTime())
-	fmt.Println(" c(" + color.Red + "\"" + color.Reset + ")(" + color.Red +
+	fmt.Println("c(" + color.Red + "\"" + color.Reset + ")(" + color.Red +
 		"\"" + color.Reset + ") \t" + color.Cyan + "OS:\t" + color.Reset +
 		getOS())
 }
