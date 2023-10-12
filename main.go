@@ -2,69 +2,76 @@ package main
 
 import (
 	"fmt"
-	"log"
 	"os"
 	"os/user"
 	"strings"
 	"time"
 
-	color "github.com/dschier-wtd/cutefetch/packages"
+	color "github.com/dschier-wtd/cutefetch/internal"
 )
 
-func getUser() string {
-	currentUser, err := user.Current()
+func getUsername() (string, error) {
+	username, err := user.Current()
 	if err != nil {
-		log.Print("Error")
-		return ""
+		return "", err
 	}
-	return currentUser.Username
+	return username.Username, nil
 }
 
-func getHostname() string {
+func getHostname() (string, error) {
 	hostname, err := os.Hostname()
 	if err != nil {
-		log.Println("Error:", err)
+		return "", err
 	}
-	return hostname
+	return hostname, nil
 }
 
-func getTime() string {
-	currentTime := time.Now()
-	formatedTime := currentTime.Format("02.01.2006 - 15:04:05")
-	return formatedTime
+func getCurrentTime() string {
+	currentTime := time.Now().Format("02.01.2006 - 15:04:05")
+	return currentTime
 }
 
-func getOS() string {
-	content, err := os.ReadFile("/etc/os-release")
-
+func getOS() (string, error) {
+	fileContent, err := os.ReadFile("/etc/os-release")
 	if err != nil {
-		log.Println("Error:", err)
-		return "Unknown"
+		return "", err
 	}
 
-	lines := strings.Split(string(content), "\n")
+	lines := strings.Split(string(fileContent), "\n")
 	for _, line := range lines {
 		if strings.HasPrefix(line, "PRETTY_NAME=") {
 			parts := strings.SplitN(line, "=", 2)
 			if len(parts) == 2 {
-				distribution := strings.Trim(parts[1], `"`)
+				osName := strings.Trim(parts[1], `"`)
 
-				return distribution
+				return osName, nil
 			}
 		}
 	}
 
-	return "Unknown"
+	return "Unknown", nil
 }
 
 func main() {
+	username, err := getUsername()
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	hostname, err := getHostname()
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	currentTime := getCurrentTime()
+
+	os, err := getOS()
+	if err != nil {
+		fmt.Println(err)
+	}
 
 	fmt.Println()
-	fmt.Println("(\\ /) \t\t" + color.Red + "User:\t" + color.Reset +
-		getUser() + "@" + getHostname())
-	fmt.Println("( · ·) \t\t" + color.Green + "Time:\t" + color.Reset +
-		getTime())
-	fmt.Println("c(" + color.Red + "\"" + color.Reset + ")(" + color.Red +
-		"\"" + color.Reset + ") \t" + color.Cyan + "OS:\t" + color.Reset +
-		getOS())
+	fmt.Printf("(\\ /)\t\t%sUser:\t%s%s@%s\n", color.Red, color.Reset, username, hostname)
+	fmt.Printf("( · ·)\t\t%sTime:\t%s%s\n", color.Green, color.Reset, currentTime)
+	fmt.Printf("c(%s\"%s%s%s%s)\t%sOS:\t%s%s\n", color.Red, color.Reset, "\"", color.Red, color.Reset, color.Cyan, color.Reset, os)
 }

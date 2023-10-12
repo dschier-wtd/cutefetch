@@ -1,3 +1,3 @@
 module github.com/dschier-wtd/cutefetch
 
-go 1.20
+go 1.21
