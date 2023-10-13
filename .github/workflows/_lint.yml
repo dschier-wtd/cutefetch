@@ -10,6 +10,7 @@ jobs:
   go-lint:
     name: "golangci-lint"
     runs-on: ubuntu-latest
+
     steps:
 
       - name: "Checkout"
