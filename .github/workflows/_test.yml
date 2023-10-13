@@ -1,5 +1,5 @@
 ---
-name: "Test"
+name: "_test"
 on:
   - "workflow_call"
 
