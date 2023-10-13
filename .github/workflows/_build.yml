@@ -22,5 +22,11 @@ jobs:
         run: "go mod tidy"
 
       - name: "Build artifacts"
-        run: "go build -v ./..."
+        run: "go build -v -o cutefetch-linux-amd64 ./..."
+
+      - name: "Upload artifacts"
+        uses: actions/upload-artifact@v3
+        with:
+          name: "cutefetch-linux-amd64"
+          path: "cutefetch-linux-amd64"
 ...
