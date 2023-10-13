@@ -1,0 +1,14 @@
+---
+  name: "Pipeline"
+  on:
+    - "push"
+
+  jobs:
+    test:
+      uses: "./.github/workflows/_test.yml"
+
+    build:
+      needs:
+        - "test"
+      uses: "./.github/workflows/_build.yml"
+...

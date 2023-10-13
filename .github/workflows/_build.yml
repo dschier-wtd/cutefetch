@@ -1,15 +1,11 @@
 ---
 name: "Build"
 on:
-  - "push"
+  - "workflow_call"
 
 jobs:
-  test:
-      uses: "./.github/workflows/test.yml"
-
   build:
     name: "Build"
-    needs: ["test"]
     runs-on: "ubuntu-latest"
 
     steps:
