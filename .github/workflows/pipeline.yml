@@ -4,11 +4,15 @@
     - "push"
 
   jobs:
+    lint:
+      uses: "./.github/workflows/_lint.yml"
+
     test:
       uses: "./.github/workflows/_test.yml"
 
     build:
       needs:
+        - "lint"
         - "test"
       uses: "./.github/workflows/_build.yml"
 ...
