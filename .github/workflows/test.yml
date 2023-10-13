@@ -17,11 +17,9 @@
 
         - name: "Setup Go"
           uses: "actions/setup-go@v4"
-          with:
-            go-version: "${{ matrix.go-version }}"
 
         - name: "Prepare"
-            run: "go mod tidy"
+          run: "go mod tidy"
 
         - name: "Run tests"
           run: "go test -v ./..."

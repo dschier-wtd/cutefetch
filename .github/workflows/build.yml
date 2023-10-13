@@ -8,6 +8,8 @@ jobs:
       uses: "./.github/workflows/test.yml"
 
   build:
+    name: "Build"
+    needs: ["test"]
     runs-on: "ubuntu-latest"
     strategy:
       matrix:
@@ -20,8 +22,6 @@ jobs:
 
       - name: "Setup Go"
         uses: "actions/setup-go@v4"
-        with:
-          go-version: "${{ matrix.go-version }}"
 
       - name: "Prepare"
         run: "go mod tidy"
