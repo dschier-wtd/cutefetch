@@ -1,3 +1,6 @@
+![GitHub](https://img.shields.io/github/license/dschier-wtd/cutefetch)
+![Pipeline](https://github.com/dschier-wtd/cutefetch/actions/workflows/pipeline.yml/badge.svg)
+
 # Cutefetch
 
 A super minimal prompt for bash. Written in Go and more or less for my own
