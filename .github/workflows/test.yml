@@ -6,9 +6,6 @@
   jobs:
     test:
       runs-on: "ubuntu-latest"
-      strategy:
-        matrix:
-          go-version-file: "./go.mod"
 
       steps:
 
@@ -17,6 +14,8 @@
 
         - name: "Setup Go"
           uses: "actions/setup-go@v4"
+          with:
+            go-version-file: 'go.mod'
 
         - name: "Prepare"
           run: "go mod tidy"
