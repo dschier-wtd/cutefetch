@@ -7,9 +7,10 @@ permissions:
   contents: "read"
 
 jobs:
-  go-lint:
-    name: "golangci-lint"
-    runs-on: ubuntu-latest
+
+  make-lint:
+    name: "make-lint"
+    runs-on: "ubuntu-latest"
 
     steps:
 
@@ -22,11 +23,26 @@ jobs:
           go-version-file: "go.mod"
           cache: false
 
-      - name: "Vet"
-        run: "go vet ./..."
+      - name: "make lint"
+        run: "make lint"
+
+  golangci-lint:
+    name: "golangci-lint"
+    runs-on: "ubuntu-latest"
+
+    steps:
+
+      - name: "Checkout"
+        uses: "actions/checkout@v4"
+
+      - name: "Setup Go"
+        uses: "actions/setup-go@v4"
+        with:
+          go-version-file: "go.mod"
+          cache: false
 
       - name: "golangci-lint"
         uses: "golangci/golangci-lint-action@v3"
         with:
-          version: "v1.54"
+          version: "v1.55"
 ...

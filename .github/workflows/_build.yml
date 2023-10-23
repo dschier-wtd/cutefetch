@@ -4,8 +4,8 @@ on:
   - "workflow_call"
 
 jobs:
-  build:
-    name: "Build"
+  make-build:
+    name: "make-build"
     runs-on: "ubuntu-latest"
 
     steps:
