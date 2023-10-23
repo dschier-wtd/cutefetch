@@ -19,15 +19,16 @@ jobs:
           go-version-file: 'go.mod'
           cache: false
 
-      - name: "Prepare"
-        run: "go mod tidy"
-
       - name: "Build artifacts"
-        run: "go build -v -o cutefetch-linux-amd64 ."
+        run: "make build_all"
 
       - name: "Upload artifacts"
         uses: actions/upload-artifact@v3
         with:
-          name: "cutefetch-linux-amd64"
-          path: "cutefetch-linux-amd64"
+          name: "cutefetch"
+          path: |
+            cutefetch-linux-amd64
+            cutefetch-linux-arm64
+            cutefetch-darwin-amd64
+            cutefetch-darwin-arm64
 ...

@@ -30,4 +30,5 @@ func main() {
 	fmt.Printf("(\\ /)\t\t%sUser:\t%s%s@%s\n", color.Red, color.Reset, username, hostname)
 	fmt.Printf("( · ·)\t\t%sTime:\t%s%s\n", color.Green, color.Reset, currentTime)
 	fmt.Printf("c(%s\"%s)(%s\"%s)\t\t%sOS:\t%s%s\n", color.Red, color.Reset, color.Red, color.Reset, color.Cyan, color.Reset, os)
+	fmt.Printf("\n")
 }

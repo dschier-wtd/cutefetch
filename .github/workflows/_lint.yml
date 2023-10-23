@@ -22,8 +22,11 @@ jobs:
           go-version-file: "go.mod"
           cache: false
 
+      - name: "Vet"
+        run: "go vet ./..."
+
       - name: "golangci-lint"
         uses: "golangci/golangci-lint-action@v3"
         with:
-          version: v1.54
+          version: "v1.54"
 ...
