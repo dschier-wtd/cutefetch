@@ -3,25 +3,27 @@
 
 # Cutefetch
 
-A super minimal prompt for bash. Written in Go and more or less for my own
+A super minimal screen fetch for bash. Written in Go and more or less for my own
 demand and exercises.
 
 ## Motivation
 
-I wanted to learn more about Go and have a nice prompt, matching my cute'ish
-desktop theme. Therefore, I started to work on this piece of code.`
+I wanted to learn more about Go and have a nice screen fetch alternative,
+matching my cute'ish desktop theme. Therefore, I started to work on this piece
+of code.`
 
 ## Description
 
-It's just a small prompt.
+It's just a small screen fetch.
 
 ![screenshot](./docs/assets/cutefetch-screenshot.png)
 
 ## Contribute
 
-The prompt is intended to be used by myself. Therefore, I don't consider that
-there will be a lot of contribution. In case you like the prompt, want to
-modify it and enhance the code, please feel free to open a Pull Request.
+The screen fetch is intended to be used by myself. Therefore, I don't consider
+that there will be a lot of contribution. In case you like it, want to modify it
+and enhance the code, please feel free to open a Pull Request or suggest a
+feature.
 
 ## License
 
