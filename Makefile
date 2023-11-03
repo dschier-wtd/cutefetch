@@ -10,7 +10,7 @@ lint:
 
 test:
 	$(info "### Executing tests...")
-	go test -v ./...
+	go test -v -cover ./...
 
 build/cutefetch:
 	$(info "### Executing build (current arch)...")
