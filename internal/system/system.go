@@ -3,23 +3,21 @@ package system
 import (
 	"os"
 	"os/user"
+	"path/filepath"
 	"strings"
 )
 
 func GetUsername() (string, error) {
-	username, err := user.Current()
+	currentUser, err := user.Current()
 	if err != nil {
 		return "", err
 	}
-	return username.Username, nil
+	return currentUser.Username, nil
 }
 
 func GetHostname() (string, error) {
 	hostname, err := os.Hostname()
-	if err != nil {
-		return "", err
-	}
-	return hostname, nil
+	return hostname, err
 }
 
 func GetOS() (string, error) {
@@ -30,15 +28,22 @@ func GetOS() (string, error) {
 
 	lines := strings.Split(string(fileContent), "\n")
 	for _, line := range lines {
-		if strings.HasPrefix(line, "PRETTY_NAME=") {
-			parts := strings.SplitN(line, "=", 2)
-			if len(parts) == 2 {
-				osName := strings.Trim(parts[1], `"`)
-
-				return osName, nil
-			}
-		}
+		osName := strings.TrimPrefix(line, "PRETTY_NAME=")
+		osName = strings.Trim(osName, `"`)
+		return osName, nil
 	}
 
 	return "Unknown", nil
+}
+
+func GetShell() (string, error) {
+	shellPath := os.Getenv("SHELL")
+
+	if shellPath == "" {
+		return "Unknown", nil
+	}
+
+	shell := filepath.Base(shellPath)
+
+	return shell, nil
 }

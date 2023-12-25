@@ -19,16 +19,24 @@ func main() {
 		fmt.Println(err)
 	}
 
-	currentTime := time.GetCurrentTime()
+	currentTime, err := time.GetCurrentTime()
+	if err != nil {
+		fmt.Println(err)
+	}
 
 	os, err := system.GetOS()
 	if err != nil {
 		fmt.Println(err)
 	}
 
+	shell, err := system.GetShell()
+	if err != nil {
+		fmt.Println(err)
+	}
+
 	fmt.Printf("\n")
-	fmt.Printf("(\\ /)\t\t%sUser:\t%s%s@%s\n", color.Red, color.Reset, username, hostname)
-	fmt.Printf("( · ·)\t\t%sTime:\t%s%s\n", color.Green, color.Reset, currentTime)
-	fmt.Printf("c(%s\"%s)(%s\"%s)\t\t%sOS:\t%s%s\n", color.Red, color.Reset, color.Red, color.Reset, color.Cyan, color.Reset, os)
-	fmt.Printf("\n")
+	fmt.Printf("\t\t\t%s%s%s @ %s%s%s\n", color.Green, username, color.Reset, color.Cyan, hostname, color.Reset)
+	fmt.Printf("(\\ /)\t\t%sTime:\t%s%s\n", color.Red, color.Reset, currentTime)
+	fmt.Printf("( · ·)\t\t%sShell:\t%s%s\n", color.Purple, color.Reset, shell)
+	fmt.Printf("c(%s\"%s)(%s\"%s)\t\t%sOS:\t%s%s\n", color.Red, color.Reset, color.Red, color.Reset, color.Yellow, color.Reset, os)
 }

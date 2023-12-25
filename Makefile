@@ -1,6 +1,6 @@
 BINARY_NAMES := build/cutefetch-linux-amd64 build/cutefetch-darwin-amd64 build/cutefetch-linux-arm64 build/cutefetch-darwin-arm64
 
-all: clean lint test build
+all: clean lint test build_all
 build: build/cutefetch
 build_all: ${BINARY_NAMES}
 
