@@ -35,8 +35,8 @@ func main() {
 	}
 
 	fmt.Printf("\n")
-	fmt.Printf("\t\t\t%s%s%s @ %s%s%s\n", color.Green, username, color.Reset, color.Cyan, hostname, color.Reset)
-	fmt.Printf("(\\ /)\t\t%sTime:\t%s%s\n", color.Red, color.Reset, currentTime)
-	fmt.Printf("( · ·)\t\t%sShell:\t%s%s\n", color.Purple, color.Reset, shell)
-	fmt.Printf("c(%s\"%s)(%s\"%s)\t\t%sOS:\t%s%s\n", color.Red, color.Reset, color.Red, color.Reset, color.Yellow, color.Reset, os)
+	fmt.Printf("\t\t%s%s%s @ %s%s%s\n", color.Green, username, color.Reset, color.Cyan, hostname, color.Reset)
+	fmt.Printf(" |\\___/|\t%sTime:\t%s%s\n", color.Red, color.Reset, currentTime)
+	fmt.Printf("=( ^.^ )=\t%sShell:\t%s%s\n", color.Purple, color.Reset, shell)
+	fmt.Printf(" (%sö%s) (%sö%s)\t%sOS:\t%s%s\n", color.Red, color.Reset, color.Red, color.Reset, color.Yellow, color.Reset, os)
 }

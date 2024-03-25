@@ -28,7 +28,7 @@ func GetOS() (string, error) {
 
 	lines := strings.Split(string(fileContent), "\n")
 	for _, line := range lines {
-		osName := strings.TrimPrefix(line, "PRETTY_NAME=")
+		osName := strings.TrimPrefix(line, "NAME=")
 		osName = strings.Trim(osName, `"`)
 		return osName, nil
 	}
