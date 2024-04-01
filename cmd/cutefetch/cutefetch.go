@@ -34,9 +34,17 @@ func main() {
 		fmt.Println(err)
 	}
 
+	containerContext, err := system.GetContainerContext()
+	if err != nil {
+		fmt.Println(err)
+	}
+
 	fmt.Printf("\n")
 	fmt.Printf("\t\t%s%s%s @ %s%s%s\n", color.Green, username, color.Reset, color.Cyan, hostname, color.Reset)
-	fmt.Printf(" |\\___/|\t%sTime:\t%s%s\n", color.Red, color.Reset, currentTime)
-	fmt.Printf("=( ^.^ )=\t%sShell:\t%s%s\n", color.Purple, color.Reset, shell)
-	fmt.Printf(" (%sö%s) (%sö%s)\t%sOS:\t%s%s\n", color.Red, color.Reset, color.Red, color.Reset, color.Yellow, color.Reset, os)
+	fmt.Printf(" |\\___/|\t%sTime:%s\t\t%s\n", color.Red, color.Reset, currentTime)
+	fmt.Printf("=( ^.^ )=\t%sShell:%s\t\t%s\n", color.Purple, color.Reset, shell)
+	fmt.Printf(" (%sö%s) (%sö%s)\t%sOS:%s\t\t%s\n", color.Red, color.Reset, color.Red, color.Reset, color.Yellow, color.Reset, os)
+	if containerContext == "container" {
+		fmt.Printf("\t\t%sContainer:%s\ttrue\n", color.Blue, color.Reset)
+	}
 }

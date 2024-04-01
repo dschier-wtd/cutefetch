@@ -47,3 +47,13 @@ func GetShell() (string, error) {
 
 	return shell, nil
 }
+
+func GetContainerContext() (string, error) {
+
+	_, err := os.Stat("/run/.containerenv")
+	if err == nil {
+		return "container", nil
+	}
+
+	return "host", nil
+}
